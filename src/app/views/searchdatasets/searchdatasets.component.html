@@ -1,0 +1,344 @@
+<!-- <section class="searchSection mat-elevation-z8"></section> -->
+<router-outlet />
+<div class="container responsive-grid">
+  <mat-radio-group
+    [(ngModel)]="firstGroup"
+    (ngModelChange)="onFirstGroupChange()"
+    aria-label="Select an option"
+    class="size-options"
+  >
+    <mat-radio-button [value]="1">Data set</mat-radio-button>
+    <mat-radio-button [value]="2">Extract</mat-radio-button>
+  </mat-radio-group>
+
+  <div class="text-center purple" *ngIf="firstGroup == 1">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> Search </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="grid-container">
+          <div class="grid-item">
+            <mat-form-field>
+              <mat-label>Function</mat-label>
+              <mat-select
+                placeholder="Search by Function"
+                name="fname"
+                [formControl]="funtionNameControl"
+              >
+                <mat-option [value]="null">None</mat-option>
+                <mat-option *ngFor="let fname of funtionNames$" [value]="fname">
+                  {{ fname.funtion_name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="grid-item">
+            <mat-form-field>
+              <mat-label>Country</mat-label>
+              <mat-select
+                placeholder="Search by Country"
+                name="country"
+                [formControl]="countryControl"
+              >
+                <mat-option [value]="null">None</mat-option>
+                <mat-option
+                  *ngFor="let country of countries$"
+                  [value]="country"
+                >
+                  {{ country.country }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="grid-item" style="padding-top: 10px">
+            <button
+              class="button btn"
+              mat-raised-button
+              color="success"
+              (click)="showAllRecords()"
+            >
+              <mat-icon>done</mat-icon> Submit
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="text-center red" *ngIf="secondGroup == 2">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> Search </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="grid-container">
+          <div class="grid-item">
+            <mat-form-field>
+              <mat-label>Search</mat-label>
+
+              <input matInput />
+            </mat-form-field>
+          </div>
+
+          <div class="grid-item" style="padding-top: 10px">
+            <button
+              class="button"
+              mat-raised-button
+              color="success"
+              (click)="showAllRecords()"
+            >
+              <mat-icon>done</mat-icon> Search
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <section *ngIf="dataLength > 0" class="tableSection">
+    <mat-table class="matTable" [dataSource]="dataSource">
+      <!--
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="selectMember(row.id)"></mat-checkbox>
+      </mat-cell>
+    </ng-container> -->
+
+      <ng-container matColumnDef="dataset_name">
+        <mat-header-cell *matHeaderCellDef> Dataset Name </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.dataset_name }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="function_name">
+        <mat-header-cell *matHeaderCellDef> Function </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.function_name }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="country">
+        <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.country }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.location }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="owner">
+        <mat-header-cell *matHeaderCellDef> Owner </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.owner }} </mat-cell>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="options">
+      <mat-header-cell *matHeaderCellDef> Options </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button>Delete</button>
+        <button>Edit</button>
+        <button (click)="deleteRecord(row.id)">Delete</button>
+            <button (click)="editRecord(row.id)">Edit</button>
+
+      </mat-cell>
+    </ng-container> -->
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [class.selected]="row.selected"
+        (click)="onRowClicked(row)"
+      ></mat-row>
+    </mat-table>
+
+    <!-- <mat-paginator #paginator [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator> -->
+  </section>
+
+  <!-- <div [app-preview-data-discovery]="sendData"></div> -->
+  <section *ngIf="disptab" class="preview-data-tableSection">
+    <div class="row" fxLayout fxLayoutAlign="center" fxLayoutGap="10px">
+      <div class="item col-md-8">
+        <div class="header">Preview-Data Discovery</div>
+
+        <table mat-table [dataSource]="rowDataSource" class="mat-elevation-z8">
+          <ng-container
+            *ngFor="let column of displayColumns"
+            matColumnDef="{{ column }}"
+          >
+            <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+            <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="CalendarQuarter">
+          <th mat-header-cell *matHeaderCellDef> CalendarQuarter </th>
+          <td mat-cell *matCellDef="let element"> {{element.CalendarQuarter}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="CalendarSemester">
+          <th mat-header-cell *matHeaderCellDef> CalendarSemester </th>
+          <td mat-cell *matCellDef="let element"> {{element.CalendarSemester}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="CalendarYear">
+          <th mat-header-cell *matHeaderCellDef> CalendarYear </th>
+          <td mat-cell *matCellDef="let element"> {{element.CalendarYear}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="DayNumberOfMonth">
+          <th mat-header-cell *matHeaderCellDef> DayNumberOfMonth </th>
+          <td mat-cell *matCellDef="let element"> {{element.DayNumberOfMonth}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="DayNumberOfWeek">
+          <th mat-header-cell *matHeaderCellDef> DayNumberOfWeek </th>
+          <td mat-cell *matCellDef="let element"> {{element.DayNumberOfWeek}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="DayNumberOfYear">
+          <th mat-header-cell *matHeaderCellDef> DayNumberOfYear </th>
+          <td mat-cell *matCellDef="let element"> {{element.DayNumberOfYear}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="EnglishDayNameOfWeek">
+          <th mat-header-cell *matHeaderCellDef> EnglishDayNameOfWeek </th>
+          <td mat-cell *matCellDef="let element"> {{element.EnglishDayNameOfWeek}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="EnglishMonthName">
+          <th mat-header-cell *matHeaderCellDef> EnglishMonthName </th>
+          <td mat-cell *matCellDef="let element"> {{element.EnglishMonthName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="FiscalQuarter">
+          <th mat-header-cell *matHeaderCellDef> FiscalQuarter </th>
+          <td mat-cell *matCellDef="let element"> {{element.FiscalQuarter}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="FiscalSemester">
+          <th mat-header-cell *matHeaderCellDef> FiscalSemester </th>
+          <td mat-cell *matCellDef="let element"> {{element.FiscalSemester}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="FiscalYear">
+          <th mat-header-cell *matHeaderCellDef> FiscalYear </th>
+          <td mat-cell *matCellDef="let element"> {{element.FiscalYear}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="FrenchDayNameOfWeek">
+          <th mat-header-cell *matHeaderCellDef> FrenchDayNameOfWeek </th>
+          <td mat-cell *matCellDef="let element"> {{element.FrenchDayNameOfWeek}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="FrenchMonthName">
+          <th mat-header-cell *matHeaderCellDef> FrenchMonthName </th>
+          <td mat-cell *matCellDef="let element"> {{element.FrenchMonthName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="FullDateAlternateKey">
+          <th mat-header-cell *matHeaderCellDef> FullDateAlternateKey </th>
+          <td mat-cell *matCellDef="let element"> {{element.FullDateAlternateKey}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="MonthNumberOfYear">
+          <th mat-header-cell *matHeaderCellDef> MonthNumberOfYear </th>
+          <td mat-cell *matCellDef="let element"> {{element.MonthNumberOfYear}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="SpanishDayNameOfWeek">
+          <th mat-header-cell *matHeaderCellDef> SpanishDayNameOfWeek </th>
+          <td mat-cell *matCellDef="let element"> {{element.SpanishDayNameOfWeek}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="SpanishMonthName">
+          <th mat-header-cell *matHeaderCellDef> SpanishMonthName </th>
+          <td mat-cell *matCellDef="let element"> {{element.SpanishMonthName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="WeekNumberOfYear">
+          <th mat-header-cell *matHeaderCellDef> WeekNumberOfYear </th>
+          <td mat-cell *matCellDef="let element"> {{element.WeekNumberOfYear}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="DateKey">
+          <th mat-header-cell *matHeaderCellDef> DateKey </th>
+          <td mat-cell *matCellDef="let element"> {{element.DateKey}} </td>
+        </ng-container> -->
+
+          <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+        </table>
+
+        <!-- <table mat-table [dataSource]="dataSourceWithObjectColumn" class=" preview-data-container">
+
+        <ng-container matColumnDef="salesChannel">
+          <mat-header-cell *matHeaderCellDef> SalesChannel </mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.salesChannel }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="totalAccount">
+          <mat-header-cell *matHeaderCellDef> Total Account </mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.totalAccount }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="totalRevenue">
+          <mat-header-cell *matHeaderCellDef> Total Revenue </mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.totalRevenue }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="productType">
+          <mat-header-cell *matHeaderCellDef> Product Type </mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.productType }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumnsWithObject"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumnsWithObject;"></mat-row>
+
+      </table> -->
+
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-around center"
+          class="space-around"
+        >
+          <!-- <button class='button' mat-raised-button color="success" (click)="loadCustomers()">
+          Request for Access </button> -->
+
+          <button
+            class="button btn"
+            mat-raised-button
+            color="success"
+            (click)="navigate()"
+          >
+            Query Builder
+          </button>
+        </div>
+      </div>
+      <div class="item col-md-4">
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <!-- <button class='button' mat-raised-button color="success" (click)="update()">
+          Request for New Data Set </button> -->
+        </div>
+
+        <div *ngIf="display" fxLayout="row" fxLayoutAlign="space-around center">
+          <mat-form-field class="input-spacer">
+            <mat-label>Request name</mat-label>
+            <input matInput formControlName="location" placeholder="Enter " />
+          </mat-form-field>
+          <button class="button btn" mat-raised-button color="success">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="loading" class="loader-section">
+    <div class="loader">
+      <!-- Add your loader HTML or component here -->
+      <!-- For example, you can use Angular Material's progress spinner -->
+      <mat-progress-spinner
+        mode="indeterminate"
+        diameter="50"
+      ></mat-progress-spinner>
+    </div>
+  </section>
+</div>

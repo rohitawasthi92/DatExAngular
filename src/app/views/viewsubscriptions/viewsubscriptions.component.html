@@ -1,0 +1,51 @@
+<h2>View/Edit Subscription</h2>
+
+<table mat-table [dataSource]="dataSourceWithObjectColumn" class=" preview-data-container">
+
+    <ng-container matColumnDef="subscription">
+      <mat-header-cell *matHeaderCellDef> Subscription Name </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.subsciptionName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="extractName">
+      <mat-header-cell *matHeaderCellDef> Extract Name </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.extractName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="startDate">
+      <mat-header-cell *matHeaderCellDef> Start Date  </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.startDate }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="endDate">
+        <mat-header-cell *matHeaderCellDef> End Date  </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.endDate }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="frequency">
+        <mat-header-cell *matHeaderCellDef> Frequency   </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.frequency }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef> Time   </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.time }}</mat-cell>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef > Action </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+            color="primary" (click)="openDialog('edit', row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Click to Delete" class="iconbutton"
+          color="warn" (click)="openDialog('delete', row)">
+          <mat-icon>delete</mat-icon>
+        </button>
+    </mat-cell>
+      </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumnsWithObject"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumnsWithObject;"></mat-row>
+
+  </table>

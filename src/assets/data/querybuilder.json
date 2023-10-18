@@ -1,0 +1,235 @@
+[
+
+    {
+
+        "attribute_description": "CustomerKey",
+
+        "attribute_name": "CustomerKey"
+
+    },
+
+    {
+
+        "attribute_description": "GeographyKey",
+
+        "attribute_name": "GeographyKey"
+
+    },
+
+    {
+
+        "attribute_description": "CustomerAlternateKey",
+
+        "attribute_name": "CustomerAlternateKey"
+
+    },
+
+    {
+
+        "attribute_description": "Title",
+
+        "attribute_name": "Title"
+
+    },
+
+    {
+
+        "attribute_description": "FirstName",
+
+        "attribute_name": "FirstName"
+
+    },
+
+    {
+
+        "attribute_description": "MiddleName",
+
+        "attribute_name": "MiddleName"
+
+    },
+
+    {
+
+        "attribute_description": "LastName",
+
+        "attribute_name": "LastName"
+
+    },
+
+    {
+
+        "attribute_description": "NameStyle",
+
+        "attribute_name": "NameStyle"
+
+    },
+
+    {
+
+        "attribute_description": "BirthDate",
+
+        "attribute_name": "BirthDate"
+
+    },
+
+    {
+
+        "attribute_description": "MaritalStatus",
+
+        "attribute_name": "MaritalStatus"
+
+    },
+
+    {
+
+        "attribute_description": "Suffix",
+
+        "attribute_name": "Suffix"
+
+    },
+
+    {
+
+        "attribute_description": "Gender",
+
+        "attribute_name": "Gender"
+
+    },
+
+    {
+
+        "attribute_description": "EmailAddress",
+
+        "attribute_name": "EmailAddress"
+
+    },
+
+    {
+
+        "attribute_description": "YearlyIncome",
+
+        "attribute_name": "YearlyIncome"
+
+    },
+
+    {
+
+        "attribute_description": "TotalChildren",
+
+        "attribute_name": "TotalChildren"
+
+    },
+
+    {
+
+        "attribute_description": "NumberChildrenAtHome",
+
+        "attribute_name": "NumberChildrenAtHome"
+
+    },
+
+    {
+
+        "attribute_description": "EnglishEducation",
+
+        "attribute_name": "EnglishEducation"
+
+    },
+
+    {
+
+        "attribute_description": "SpanishEducation",
+
+        "attribute_name": "SpanishEducation"
+
+    },
+
+    {
+
+        "attribute_description": "FrenchEducation",
+
+        "attribute_name": "FrenchEducation"
+
+    },
+
+    {
+
+        "attribute_description": "EnglishOccupation",
+
+        "attribute_name": "EnglishOccupation"
+
+    },
+
+    {
+
+        "attribute_description": "SpanishOccupation",
+
+        "attribute_name": "SpanishOccupation"
+
+    },
+
+    {
+
+        "attribute_description": "FrenchOccupation",
+
+        "attribute_name": "FrenchOccupation"
+
+    },
+
+    {
+
+        "attribute_description": "HouseOwnerFlag",
+
+        "attribute_name": "HouseOwnerFlag"
+
+    },
+
+    {
+
+        "attribute_description": "NumberCarsOwned",
+
+        "attribute_name": "NumberCarsOwned"
+
+    },
+
+    {
+
+        "attribute_description": "AddressLine1",
+
+        "attribute_name": "AddressLine1"
+
+    },
+
+    {
+
+        "attribute_description": "AddressLine2",
+
+        "attribute_name": "AddressLine2"
+
+    },
+
+    {
+
+        "attribute_description": "Phone",
+
+        "attribute_name": "Phone"
+
+    },
+
+    {
+
+        "attribute_description": "DateFirstPurchase",
+
+        "attribute_name": "DateFirstPurchase"
+
+    },
+
+    {
+
+        "attribute_description": "CommuteDistance",
+
+        "attribute_name": "CommuteDistance"
+
+    }
+
+]

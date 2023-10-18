@@ -1,0 +1,309 @@
+
+<h2> Query Builder</h2>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation" matSort>
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- <ng-container matColumnDef="mandatoryIndicator">
+          <th mat-header-cell *matHeaderCellDef ></th>
+          <td mat-cell *matCellDef="let element;let i=index" (click) = "checked(element)">
+
+            <mat-checkbox
+              [formControl]="mandatoryControl"
+            ></mat-checkbox>
+          </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="mandatoryIndicator">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (click)="toggleAllRows()"
+                          [checked]="isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          >
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)"
+                          >
+            </mat-checkbox>
+          </td>
+        </ng-container>
+  <!-- Position Column -->
+  <ng-container matColumnDef="attribute_name">
+    <th mat-header-cell *matHeaderCellDef> Column Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.attribute_name}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="attribute_description">
+    <th mat-header-cell *matHeaderCellDef> Discription </th>
+    <td mat-cell *matCellDef="let element"> {{element.attribute_description}} </td>
+  </ng-container>
+
+
+
+
+  <ng-container matColumnDef="renamedColumn">
+  <th mat-header-cell *matHeaderCellDef >
+    Renamed Column
+  </th>
+  <td mat-cell *matCellDef="let element;let i = index">
+      <input
+        type="text"
+        matInput
+        [formControl]="renamedColumnControl"
+      />
+  </td>
+</ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="checked(row)"></tr>
+</table>
+
+<div class="row" >
+  <div fxLayout="row" fxLayoutAlign="space-around center" class="space-around">
+    <button mat-stroked-button color="success" type="reset" class="push-right-xs button">Reset</button>
+    <button class='button' mat-raised-button color="success" (click)="toggleAllRows()">
+       <!-- <mat-checkbox  (change)="$event ? masterToggle() : null"
+    [checked]="selection.hasValue() && isAllSelected()"
+    [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox> -->
+      Select All </button>
+
+    <button class='button' mat-raised-button color="success" (click)="displayView()">
+      View  Data</button>
+  </div>
+</div>
+
+
+
+
+<!-- Copyright 2022 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at https://angular.io/license -->
+
+
+
+<!-- <table mat-table [dataSource]="dataSource">
+
+
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+
+
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Column Name  </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef> Description  </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> Rename Column </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-form-field appearance="outline" style="min-height: 35px;">
+            <input matInput >
+
+          </mat-form-field></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selection.toggle(row)">
+    </mat-row>
+  </table>
+ -->
+  <section *ngIf="viewdisp">
+
+  <table  mat-table [dataSource]="rowDataSource" class="mat-elevation-z8 preview-data-tableSection">
+
+    <!-- <ng-container matColumnDef="salesChannel">
+      <mat-header-cell *matHeaderCellDef  style="border-bottom-style: none;">
+        ABRUE
+</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.salesChannel }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalAccount">
+      <mat-header-cell *matHeaderCellDef style="border-bottom-style: none;"> ARBPL
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.totalAccount }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalRevenue">
+      <mat-header-cell *matHeaderCellDef style="border-bottom-style: none;"> ARUZE
+       </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.totalRevenue }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="productType">
+      <mat-header-cell *matHeaderCellDef style="border-bottom-style: none;"> ASVRG
+        </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.productType }}</mat-cell>
+    </ng-container>
+
+
+  <ng-container matColumnDef="header-row-first-group">
+    <mat-header-cell style="font-size: 12; font-weight: 300;text-align: center;"*matHeaderCellDef
+        [attr.colspan]="1">
+        Scheduled teardown time
+    </mat-header-cell>
+  </ng-container>
+  <ng-container matColumnDef="header-row-second">
+    <mat-header-cell style="font-size: 12;font-weight: 300;" *matHeaderCellDef
+        [attr.colspan]="2">
+        Work center
+    </mat-header-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="header-row-third">
+    <mat-header-cell style="font-size: 12;font-weight: 300;" *matHeaderCellDef
+        [attr.colspan]="3">
+        Unit of measure for teardown
+    </mat-header-cell>
+  </ng-container>
+  <ng-container matColumnDef="header-row-four">
+    <mat-header-cell style="font-size: 12; font-weight: 300;" *matHeaderCellDef
+        [attr.colspan]="4">
+        Operation scrap
+    </mat-header-cell>
+  </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumnsWithObject" ></mat-header-row>
+    <mat-header-row *matHeaderRowDef="['header-row-first-group','header-row-second','header-row-third','header-row-four']" style="border-bottom-style: none;"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumnsWithObject;"></mat-row> -->
+
+    <ng-container *ngFor="let column of displayColumns" matColumnDef={{column}}>
+      <th mat-header-cell *matHeaderCellDef> {{ column }} </th>
+      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="CalendarQuarter">
+      <th mat-header-cell *matHeaderCellDef> CalendarQuarter </th>
+      <td mat-cell *matCellDef="let element"> {{element.CalendarQuarter}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="CalendarSemester">
+      <th mat-header-cell *matHeaderCellDef> CalendarSemester </th>
+      <td mat-cell *matCellDef="let element"> {{element.CalendarSemester}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="CalendarYear">
+      <th mat-header-cell *matHeaderCellDef> CalendarYear </th>
+      <td mat-cell *matCellDef="let element"> {{element.CalendarYear}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DayNumberOfMonth">
+      <th mat-header-cell *matHeaderCellDef> DayNumberOfMonth </th>
+      <td mat-cell *matCellDef="let element"> {{element.DayNumberOfMonth}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DayNumberOfWeek">
+      <th mat-header-cell *matHeaderCellDef> DayNumberOfWeek </th>
+      <td mat-cell *matCellDef="let element"> {{element.DayNumberOfWeek}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DayNumberOfYear">
+      <th mat-header-cell *matHeaderCellDef> DayNumberOfYear </th>
+      <td mat-cell *matCellDef="let element"> {{element.DayNumberOfYear}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="EnglishDayNameOfWeek">
+      <th mat-header-cell *matHeaderCellDef> EnglishDayNameOfWeek </th>
+      <td mat-cell *matCellDef="let element"> {{element.EnglishDayNameOfWeek}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="EnglishMonthName">
+      <th mat-header-cell *matHeaderCellDef> EnglishMonthName </th>
+      <td mat-cell *matCellDef="let element"> {{element.EnglishMonthName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="FiscalQuarter">
+      <th mat-header-cell *matHeaderCellDef> FiscalQuarter </th>
+      <td mat-cell *matCellDef="let element"> {{element.FiscalQuarter}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="FiscalSemester">
+      <th mat-header-cell *matHeaderCellDef> FiscalSemester </th>
+      <td mat-cell *matCellDef="let element"> {{element.FiscalSemester}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="FiscalYear">
+      <th mat-header-cell *matHeaderCellDef> FiscalYear </th>
+      <td mat-cell *matCellDef="let element"> {{element.FiscalYear}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="FrenchDayNameOfWeek">
+      <th mat-header-cell *matHeaderCellDef> FrenchDayNameOfWeek </th>
+      <td mat-cell *matCellDef="let element"> {{element.FrenchDayNameOfWeek}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="FrenchMonthName">
+      <th mat-header-cell *matHeaderCellDef> FrenchMonthName </th>
+      <td mat-cell *matCellDef="let element"> {{element.FrenchMonthName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="FullDateAlternateKey">
+      <th mat-header-cell *matHeaderCellDef> FullDateAlternateKey </th>
+      <td mat-cell *matCellDef="let element"> {{element.FullDateAlternateKey}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="MonthNumberOfYear">
+      <th mat-header-cell *matHeaderCellDef> MonthNumberOfYear </th>
+      <td mat-cell *matCellDef="let element"> {{element.MonthNumberOfYear}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="SpanishDayNameOfWeek">
+      <th mat-header-cell *matHeaderCellDef> SpanishDayNameOfWeek </th>
+      <td mat-cell *matCellDef="let element"> {{element.SpanishDayNameOfWeek}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="SpanishMonthName">
+      <th mat-header-cell *matHeaderCellDef> SpanishMonthName </th>
+      <td mat-cell *matCellDef="let element"> {{element.SpanishMonthName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="WeekNumberOfYear">
+      <th mat-header-cell *matHeaderCellDef> WeekNumberOfYear </th>
+      <td mat-cell *matCellDef="let element"> {{element.WeekNumberOfYear}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DateKey">
+      <th mat-header-cell *matHeaderCellDef> DateKey </th>
+      <td mat-cell *matCellDef="let element"> {{element.DateKey}} </td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+
+
+
+  </table>
+  <div class="row">
+    <div fxLayout="row" fxLayoutAlign="space-around center" class="space-around" >
+
+      <button class='button' mat-raised-button color="success" (click)="extractNavigate()">
+        Extract Configuration</button>
+    </div>
+  </div>
+</section>

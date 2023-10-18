@@ -1,0 +1,60 @@
+<div class="row">
+  <h2>Extract Configuration</h2>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div style="width: 31%" class="form-group col-md-4">
+        <label for="extractName"> Name</label>
+        <input type="text" formControlName="extractName" class="form-control" />
+      </div>
+      <div class="row col-md-12">
+        <div class="form-group col-md-4">
+          <label class=""> File Type</label>
+          <select class="form-control" formControlName="fileType">
+            <option>Select File Type</option>
+            <option>csv</option>
+            <option>parquet</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="fileName">File Name</label>
+          <input
+            type="text"
+            formControlName="fileName"
+            class="form-control"
+            style="width: 96%"
+          />
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      <div class="row col-md-12">
+        <div class="form-group col-md-4">
+          <label class="">Destination</label>
+          <select class="form-control" formControlName="storageName">
+            <option>Select Destination</option>
+            <option>Data Lake</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="relativePath">Location</label>
+          <input
+            type="text"
+            formControlName="relativePath"
+            class="form-control"
+            style="width: 96%"
+          />
+        </div>
+
+        <div class="form-group col-md-4"></div>
+      </div>
+      <div class="form-group" style="padding-top: 2rem">
+        <button class="btn btn-primary" [disabled]="!(form.status === 'VALID')" [class.disabled]="!(form.status === 'VALID')" (click)="createExtract()">Create Extract</button>
+        <button class="btn btn-primary" [disabled]="!runExtractVisible" [class.disabled]="!runExtractVisible" (click)="runExtract()">
+          Run Extract
+        </button>
+        <button class="btn btn-primary" [disabled]="!runExtractVisible" [class.disabled]="!runExtractVisible" (click)="subscription()">
+          Proceed To Subscription
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

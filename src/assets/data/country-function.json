@@ -1,0 +1,20 @@
+[
+    {
+        "country_list": [
+            {
+                "country": "All"
+            }
+        ],
+        "function_list": [
+            {
+                "funtion_name": "All"
+            },
+            {
+                "funtion_name": "Master-data"
+            },
+            {
+                "funtion_name": "Sales"
+            }
+        ]
+    }
+]

@@ -1,0 +1,96 @@
+<c-card class="mb-4">
+    <c-card-body>
+      <c-row>
+        <c-col md="8">
+          <!-- <h5 class="card-title mb-0" id="traffic">Request Overview</h5> -->
+          <div class="small text-medium-emphasis card-body-ro-text">Request Overview</div>
+          <c-row class="text-center" [md]="12" [xs]="1">
+            <c-col class="mb-sm-2 mb-0 card-body-rra card-body-rra-text">
+             
+              <strong>12</strong>
+              <div class="text-medium-emphasis card-body-rra-text">Request Raised</div>
+           
+            </c-col>
+          
+            </c-row>
+            <c-row class="text-center" [md]="3" [xs]="3">
+              <c-col class="mb-sm-2 mb-0 ml-1 card-body-ra card-body-ra-text">
+                
+                <strong>2</strong>
+                <div class="text-medium-emphasis card-body-ra-text">Request Aproval</div>
+            
+              </c-col>
+              <c-col class="mb-sm-2 mb-0 ml-1 mr-1 card-body-rp card-body-rp-text ">
+              
+                <strong>7</strong>
+                <div class="text-medium-emphasis card-body-rp-text ">Request Pending</div>
+              
+              </c-col>
+              <c-col class="mb-sm-2 mb-0 card-body-rr card-body-rr-text">
+               
+                <strong>12</strong>
+                <div class="text-medium-emphasis card-body-rr-text ">Request Rejected</div>
+               
+              </c-col>
+            
+            </c-row>
+        </c-col>
+       
+         
+         <c-col class="d-none d-md-block" md="4">
+          <div class="small text-medium-emphasis card-body-ro-text"> Recent Requests</div>
+          <c-col xs="12">
+            
+  
+  
+           
+            <c-card class="mb-4">
+              <c-accordion [flush]="true">
+                <c-accordion-item #item0="cAccordionItem" [visible]="false">
+                  <ng-template cTemplateId="accordionHeaderTemplate">
+                    <button (click)="item0.toggleItem()" [collapsed]="!item0.visible" cAccordionButton>
+                      Accordion item #0
+                    </button>
+                  </ng-template>
+                  <ng-template cTemplateId="accordionBodyTemplate">
+                    <div class="accordion-body">
+                      <strong>This is the first item's accordion body.</strong> 
+                    </div>
+                  </ng-template>
+                </c-accordion-item>
+                <c-accordion-item #item1="cAccordionItem" [visible]="false">
+                  <ng-template cTemplateId="accordionHeaderTemplate">
+                    <button (click)="item1.toggleItem()" [collapsed]="!item1.visible" cAccordionButton>
+                      Accordion item #1
+                    </button>
+                  </ng-template>
+                  <ng-template cTemplateId="accordionBodyTemplate">
+                    <div class="accordion-body">
+                      <strong>This is the second item's accordion body.</strong> 
+                    </div>
+                  </ng-template>
+                </c-accordion-item>
+                <c-accordion-item #item2="cAccordionItem" [visible]="false">
+                  <ng-template cTemplateId="accordionHeaderTemplate">
+                    <button (click)="item2.toggleItem()" [collapsed]="!item2.visible" cAccordionButton>
+                      Accordion item #2
+                    </button>
+                  </ng-template>
+                  <ng-template cTemplateId="accordionBodyTemplate">
+                    <div class="accordion-body">
+                      <strong>This is the third item's accordion body.</strong> 
+                    </div>
+                  </ng-template>
+                </c-accordion-item>
+              </c-accordion>
+            </c-card>
+          </c-col>
+        </c-col>
+      </c-row>
+     
+    </c-card-body>
+  
+  </c-card> 
+  
+
+ 

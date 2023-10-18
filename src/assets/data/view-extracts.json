@@ -1,0 +1,99 @@
+[
+
+    {
+
+        "createdBy": "Sidharth Sundar",
+
+        "detsination": "Sidharth Sundar",
+
+        "extractName": "Calendar",
+
+        "fileType": "Calendar",
+
+        "location": "Calendar",
+
+        "underlyingDataSet": "Calendar"
+
+    },
+
+    {
+
+        "createdBy": "rohit",
+
+        "detsination": "rohit",
+
+        "extractName": "name",
+
+        "fileType": "name",
+
+        "location": "Customer",
+
+        "underlyingDataSet": "Customer"
+
+    },
+
+    {
+
+        "createdBy": "Sarita",
+
+        "detsination": "Sarita",
+
+        "extractName": "OM",
+
+        "fileType": "OM",
+
+        "location": "Product",
+
+        "underlyingDataSet": "Product"
+
+    },
+
+    {
+
+        "createdBy": "Sarita",
+
+        "detsination": "Sarita",
+
+        "extractName": "OM",
+
+        "fileType": "OM",
+
+        "location": "Product",
+
+        "underlyingDataSet": "Product"
+
+    },
+
+    {
+
+        "createdBy": "Sarita",
+
+        "detsination": "Sarita",
+
+        "extractName": "OM",
+
+        "fileType": "OM",
+
+        "location": "Product",
+
+        "underlyingDataSet": "Product"
+
+    },
+
+    {
+
+        "createdBy": "Sarita",
+
+        "detsination": "Sarita",
+
+        "extractName": "OM",
+
+        "fileType": "OM",
+
+        "location": "Product",
+
+        "underlyingDataSet": "Product"
+
+    }
+
+]

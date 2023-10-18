@@ -1,0 +1,25 @@
+.form-container {
+    padding: 40px;
+}
+
+.input {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-row {
+    display: flex;
+    gap: 20px;
+}
+
+.input label {
+    margin-bottom: 5px;
+}
+
+.form-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}

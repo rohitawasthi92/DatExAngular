@@ -1,0 +1,53 @@
+<div class="row">
+  <h2>Subscription</h2>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row col-md-12">
+        <div class="form-group col-md-4">
+          <label for="name"> Name</label>
+          <input type="text" formControlName="name" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+          <label class=""> Frequency</label>
+          <select class="form-control" formControlName="frequency">
+            <option>Select Frequency Type</option>
+            <option>Daily</option>
+            <option>Weekly</option>
+            <option>Monthly</option>
+          </select>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      <div class="row col-md-12">
+        <div class="form-group col-md-4">
+          <label for="startDate"> Start Date</label>
+          <input type="date" formControlName="startDate" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+          <label for="endDate"> End Date</label>
+          <input type="date" formControlName="endDate" class="form-control" />
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      <div class="form-group col-md-8">
+        <label for="time">Time</label>
+        <input
+          type="time"
+          formControlName="time"
+          class="form-control"
+          style="width: 96%"
+        />
+      </div>
+      <!-- <div class="form-group ">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" class="form-control" />
+
+            </div> -->
+      <div class="form-group" style="padding-top: 2rem">
+        <button class="btn btn-primary"[disabled]="!(form.status === 'VALID')" [class.disabled]="!(form.status === 'VALID')"   (click)="onCreateSubscription()">
+          Create Subscription
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

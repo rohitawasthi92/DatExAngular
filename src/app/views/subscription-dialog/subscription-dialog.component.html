@@ -1,0 +1,46 @@
+<div class="form-container" *ngIf="isEditAction()">
+    <form [formGroup]="subscriptionForm">
+        <div class="input-row">
+            <mat-form-field class="input" appearance="outline">
+                <mat-label>Subscription Name</mat-label>
+                <input matInput readonly style="color: rgb(158, 148, 148);" type="text" formControlName="subscriptionName">
+            </mat-form-field>
+            <mat-form-field class="input" appearance="outline">
+                <mat-label>Extract Name</mat-label>
+                <input matInput readonly style="color: rgb(158, 148, 148);" type="text" formControlName="extractName">
+            </mat-form-field>
+        </div>
+        <div class="input-row">
+            <mat-form-field class="input" appearance="outline">
+                <mat-label>Start Date</mat-label>
+                <input matInput type="text" formControlName="startDate">
+            </mat-form-field>
+            <mat-form-field class="input" appearance="outline">
+                <mat-label>End Date</mat-label>
+                <input matInput type="text" formControlName="endDate">
+            </mat-form-field>
+        </div>
+        <div class="input-row">
+            <mat-form-field class="input" appearance="outline">
+                <mat-label>Frequency</mat-label>
+                <input matInput type="text" formControlName="frequency">
+            </mat-form-field>
+            <mat-form-field class="input" appearance="outline">
+                <mat-label>Time</mat-label>
+                <input matInput type="text" formControlName="scheduledTime">
+            </mat-form-field>
+        </div>
+        <div class="form-buttons">
+            <button mat-flat-button color="warn" (click)="onFormCancel()">Cancel</button>
+            <button mat-flat-button color="primary" (click)="onFormSubmit()">Submit</button>
+        </div>
+    </form>
+</div>
+
+<div class="form-container" *ngIf="!isEditAction()">
+<h2>Are you sure you want to delete this data?</h2>
+<div class="form-buttons">
+    <button mat-flat-button color="primary" (click)="onFormCancel()">Cancel</button>
+    <button mat-flat-button color="warn" (click)="onDeleteClick()">Delete</button>
+</div>
+</div>

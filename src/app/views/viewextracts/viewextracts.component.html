@@ -1,0 +1,86 @@
+<h2>View Extracts</h2>
+<table mat-table [dataSource]="dataSource" class="preview-data-container">
+  <ng-container matColumnDef="extractName">
+    <mat-header-cell *matHeaderCellDef> Extract Name </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.extractName }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="createdBy">
+    <mat-header-cell *matHeaderCellDef> Created By </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.createdBy }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="underlyingDataset">
+    <mat-header-cell *matHeaderCellDef> Data Set </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.underlyingDataSet }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="fileType">
+    <mat-header-cell *matHeaderCellDef> File Type </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.fileType }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="destination">
+    <mat-header-cell *matHeaderCellDef> Destination </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.detsination }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="location">
+    <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.location }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button
+        mat-icon-button
+        matTooltip="Click to Edit"
+        class="iconbutton"
+        (click)="openDialog('edit', row)"
+        color="primary"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        matTooltip="Click to Delete"
+        class="iconbutton"
+        (click)="openDialog('delete', row)"
+        color="warn"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row
+    *matHeaderRowDef="displayedColumnsWithObject"
+  ></mat-header-row>
+  <mat-row
+    *matRowDef="let row; columns: displayedColumnsWithObject"
+    (click)="onRowClicked(row)"
+  ></mat-row>
+</table>
+
+<div fxLayout="row" fxLayoutAlign="space-around center" class="space-around">
+  <!-- <button class='button' mat-raised-button color="success" >
+        Preview  </button> -->
+
+  <button
+    class="button"
+    mat-raised-button
+    color="success"
+    (click)="onRunExtract()"
+    [disabled]="!extractName"
+    [ngClass]="{'disabled-btn': !extractName}"
+  >
+    Run Extract
+  </button>
+
+  <button
+    class="button"
+    mat-raised-button
+    color="success"
+    (click)="onCreateSubscription()"
+    [disabled]="!extractName"
+    [ngClass]="{'disabled-btn': !extractName}"
+  >
+    Create Subscription
+  </button>
+</div>

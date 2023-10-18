@@ -1,0 +1,48 @@
+<div class="form-container" *ngIf="isEditAction()">
+        <form [formGroup]="extractForm">
+            <div class="input-row">
+                <mat-form-field class="input" appearance="outline">
+                    <mat-label>Extract Name</mat-label>
+                    <input matInput readonly style="color: rgb(158, 148, 148);" type="text" formControlName="extractName">
+                </mat-form-field>
+                <mat-form-field class="input" appearance="outline">
+                    <mat-label>Created By</mat-label>
+                    <input matInput readonly style="color: rgb(158, 148, 148);" type="text" formControlName="userName">
+                </mat-form-field>
+            </div>
+            <div class="input-row">
+                <mat-form-field class="input" appearance="outline">
+                    <mat-label>Data Set</mat-label>
+                    <input matInput readonly style="color: rgb(158, 148, 148);" type="text" formControlName="underlyingDataSet">
+                </mat-form-field>
+                <mat-form-field class="input" appearance="outline">
+                    <mat-label>File Type</mat-label>
+                    <input matInput type="text" formControlName="fileType">
+                </mat-form-field>
+            </div>
+            <div class="input-row">
+                <mat-form-field class="input" appearance="outline">
+                    <mat-label>Destination</mat-label>
+                    <input matInput type="text" formControlName="detsination">
+                </mat-form-field>
+                <mat-form-field class="input" appearance="outline">
+                    <mat-label>Location</mat-label>
+                    <input matInput type="text" formControlName="location">
+                </mat-form-field>
+            </div>
+            <div class="form-buttons">
+                <button mat-flat-button color="warn" (click)="onFormCancel()">Cancel</button>
+                <button mat-flat-button color="primary" (click)="onFormSubmit()">Submit</button>
+            </div>
+        </form>
+</div>
+
+
+
+<div class="form-container" *ngIf="!isEditAction()">
+    <h2>Are you sure you want to delete this data?</h2>
+    <div class="form-buttons">
+        <button mat-flat-button color="primary" (click)="onFormCancel()">Cancel</button>
+        <button mat-flat-button color="warn" (click)="onDeleteClick()">Delete</button>
+    </div>
+</div>

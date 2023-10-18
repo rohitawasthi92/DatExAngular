@@ -1,0 +1,21 @@
+
+.btn-primary {
+    --cui-btn-color: rgba(255, 255, 255, 0.87);
+    --cui-btn-bg: #86BC24;
+
+    --cui-btn-border-color: #86BC24;
+    --cui-btn-hover-color: rgba(255, 255, 255, 0.87);
+    --cui-btn-hover-bg: #24880b ;
+    --cui-btn-hover-border-color: #86BC24;
+}
+.form-group{
+    padding-top: 1rem;
+
+
+}
+
+.disabled {
+    background-color: rgb(199, 198, 198);
+    color: black;
+    border: none;
+}

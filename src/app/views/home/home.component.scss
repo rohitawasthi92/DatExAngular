@@ -1,0 +1,96 @@
+:host {
+    .legend {
+      small {
+        font-size: x-small;
+      }
+    }
+  }
+  
+  .header {
+    background-color: #86BC24 !important;
+  }
+  
+  .header {
+    --cui-header-min-height: 4rem;
+    --cui-header-padding-x: 0.5rem;
+    --cui-header-padding-y: 0.5rem;
+    --cui-header-bg: #86BC24 !important;
+  }
+  
+  .card-body-rp-text {
+  
+    color: rgb(252, 183, 101) !important;
+    text-align: center;
+    font-weight: 400;
+    height: 70px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-body-rr-text {
+  
+    color: rgb(255, 0, 0) !important;
+    text-align: center;
+    font-weight: 400;
+    height: 70px;
+  
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-body-ra-text {
+    color: rgb(22, 101, 52) !important;
+    text-align: center;
+    font-weight: 400;
+    height: 70px;
+   
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  .card-body-rra {
+    background-color: rgb(238, 242, 255) !important;
+    color: rgb(55, 48, 163);
+    font-weight: 400;
+    height: 120px;
+  
+    justify-content: center;
+    align-items: center;
+  
+  }
+  .card-body-ro-text{
+    color: rgb(55, 48, 163) !important;
+  }
+  
+  .card-body-rra-text {
+    color: rgb(55, 48, 163) !important;
+    text-align: center;
+    font-weight: 400;
+    height: 70px;
+   
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  .card-body-rp {
+    background-color: rgb(255, 240, 223);
+  }
+  
+  .card-body-rr {
+    background-color: rgb(255, 229, 229);
+  }
+  
+  .card-body-ra {
+    background-color: rgb(240, 253, 244);
+  
+  }
+  :host ::ng-deep .accordion-custom {
+    .accordion-button {
+      background-color: var(--cui-dark);
+      color: var(--cui-white);
+    }
+  }
+  
